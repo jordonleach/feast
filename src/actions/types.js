@@ -1,0 +1,10 @@
+export const EMAIL_CHANGED = 'email_changed';
+export const PASSWORD_CHANGED = 'password_changed';
+export const LOGIN_USER_SUCCESS = 'login_user_success';
+export const LOGIN_USER_FAIL = 'login_user_fail';
+export const LOGIN_USER = 'login_user';
+export const PET_UPDATE = 'pet_update';
+export const PET_FEAST = 'pet_feast';
+export const PET_CREATE = 'pet_create';
+export const PETS_FETCH_SUCCESS = 'pet_fetch_success';
+export const PET_SAVE_SUCCESS = 'pet_save_success';
