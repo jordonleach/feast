@@ -35,11 +35,19 @@ class PetsList extends Component {
 	render() {
 		return (
 			<ListView
+				style={styles.listContainer}
 				enableEmptySections
 				dataSource={this.dataSource}
 				renderRow={this.renderRow}
 			/>
 		);
+	}
+}
+
+const styles = {
+	listContainer: {
+		margin: 10,
+		padding: 5
 	}
 }
 

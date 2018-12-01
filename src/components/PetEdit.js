@@ -1,7 +1,6 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Communications from 'react-native-communications';
 import PetForm from './PetForm';
 import { petUpdate, petSave, petDelete } from '../actions';
 import { Card, CardSection, Button, Confirm } from './common';
@@ -19,13 +18,6 @@ class PetEdit extends Component {
 
 		this.props.petSave({ name, uid: this.props.pet.uid });
 	}
-
-	// Text the person their shift (not for use with pets)
-	// onTextPress() {
-	// 	const { phone, shift } = this.props;
-
-	// 	Communications.text(phone, `Your upcoming shift is on ${shift}`);
-	// }
 
 	onAccept() {
 		const { uid } = this.props;

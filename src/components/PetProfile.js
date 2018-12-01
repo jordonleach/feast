@@ -3,20 +3,21 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { View, Text, Switch } from 'react-native';
 import PetForm from './PetForm';
-import { petFeast } from '../actions';
-import { Card, CardSection, Button } from './common';
+import { petFeed, petUpdate } from '../actions';
+import { Card, CardSection } from './common';
 
 class PetProfile extends Component {
 	componentWillMount() {
-		_.each(this.props.pet, (value, prop) => {
-			this.props.petFeast({ prop, value });
+		_.each(this.props.pets, (value, prop) => {
+			this.props.petUpdate({ prop, value });
 		});
 	}
 
-	onSwitchPress() {
-		const { name, fed } = this.props;
-		console.log(name, fed);
-	}
+	// onSwitchPress() {
+	// 	const { value, fed, uid } = this.props;
+
+	// 	this.props.petFeed({ fed: this.props.pet.fed, uid: this.props.pet.uid});
+	// }
 
 	render() {
 		return (
@@ -29,11 +30,14 @@ class PetProfile extends Component {
 					</View>
 					<Switch
 						value={this.props.fed}
+						onValueChange={value => this.props.petFeed({ 
+							fed: value, 
+							uid: this.props.pet.uid 
+						})}
 						// onValueChange={this.onSwitchPress.bind(this)}
-						onValueChange={value => this.props.petFeast({ prop: 'fed', value })}
-					/>
+					>
+					</Switch>
 				</CardSection>
-
 			</Card>
 		);
 	}
@@ -46,11 +50,10 @@ const styles = {
 }
 
 const mapStateToProps = (state) => {
-	const { name, fed } = state.petForm;
+	const { name, fed, uid } = state.petForm;
 
-	return { name, fed };
+	return { name, fed, uid };
 };
 
-export default connect(mapStateToProps, { 
-	petFeast
-})(PetProfile);
+
+export default connect(mapStateToProps, { petFeed, petUpdate })(PetProfile);

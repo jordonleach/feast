@@ -12,7 +12,7 @@ const RouterComponent = () => {
 			<Scene key="root" hideNavBar>
 
 				<Scene key="auth">
-					<Scene key="login" component={LoginForm} title="Login" initial />
+					<Scene key="login" component={LoginForm} title="Feast" initial />
 				</Scene>
 
 				<Scene key="main">
@@ -32,7 +32,7 @@ const RouterComponent = () => {
 					<Scene
 						key="petProfile"
 						component={PetProfile}
-						title="Pet" // Dynamically change title to pet's name
+						// title="Pet" // Dynamically change title to pet's name
 					/>
 					<Scene
 						key="petEdit" 

@@ -3,8 +3,9 @@ import { Actions } from 'react-native-router-flux';
 import { 
 	PET_UPDATE,
 	PET_CREATE,
-	PET_FEAST,
+	PET_FEED,
 	PETS_FETCH_SUCCESS,
+	PET_FEAST_FETCH,
 	PET_SAVE_SUCCESS
 } from './types';
 
@@ -16,12 +17,12 @@ export const petUpdate = ({ prop, value }) => {
 	};
 };
 
-export const petCreate = ({ name }) => {
+export const petCreate = ({ name, fed }) => {
 	const { currentUser } = firebase.auth();
 
 	return (dispatch) => {
 		firebase.database().ref(`/users/${currentUser.uid}/pets`)
-		.push({ name })
+		.push({ name, fed })
 		.then(() => {
 			dispatch({ type: PET_CREATE });
 			Actions.pop();
@@ -73,24 +74,15 @@ export const petProfile = ({ uid }) => {
 	};
 };
 
-export const petFeast = ({ prop, value, uid }) => {
+export const petFeed = ({ fed, uid }) => {
 	const { currentUser } = firebase.auth();
 
 	return (dispatch) => {
 		firebase.database().ref(`/users/${currentUser.uid}/pets/${uid}`)
-			.set({ value })
+			.update({ fed })
 			.then(() => {
-				dispatch({ 
-					type: PET_FEAST,
-					payload: { prop, value }
-				});
+				dispatch({ type: PET_FEED, payload: { prop: 'fed', value: fed } });
+				console.log(fed, uid);
 			});
 	};
 };
-
-// export const petFeast = ({ prop, value }) => {
-// 	return {
-// 		type: PET_FEAST,
-// 		payload: { prop, value }
-// 	};
-// };
