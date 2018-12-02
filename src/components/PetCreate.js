@@ -6,9 +6,9 @@ import PetForm from './PetForm';
 
 class PetCreate extends Component {
 	onButtonPress() {
-		const { name, fed } = this.props;
+		const { name, fedBreakfast, fedDinner } = this.props;
 
-		this.props.petCreate({ name, fed });
+		this.props.petCreate({ name, fedBreakfast, fedDinner });
 	}
 
 	render() {
@@ -27,9 +27,9 @@ class PetCreate extends Component {
 
 
 const mapStateToProps = (state) => {
-	const { name, fed } = state.petForm;
+	const { name, fedBreakfast, fedDinner } = state.petForm;
 
-	return { name, fed };
+	return { name, fedBreakfast, fedDinner };
 };
 
 export default connect(mapStateToProps, { 

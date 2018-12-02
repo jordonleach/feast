@@ -3,7 +3,8 @@ import { Actions } from 'react-native-router-flux';
 import { 
 	PET_UPDATE,
 	PET_CREATE,
-	PET_FEED,
+	PET_FEED_BREAKFAST,
+	PET_FEED_DINNER,
 	PETS_FETCH_SUCCESS,
 	PET_SAVE_SUCCESS
 } from './types';
@@ -16,12 +17,12 @@ export const petUpdate = ({ prop, value, uid }) => {
 	};
 };
 
-export const petCreate = ({ name, fed }) => {
+export const petCreate = ({ name, fedBreakfast, fedDinner }) => {
 	const { currentUser } = firebase.auth();
 
 	return (dispatch) => {
 		firebase.database().ref(`/users/${currentUser.uid}/pets`)
-		.push({ name, fed })
+		.push({ name, fedBreakfast, fedDinner })
 		.then(() => {
 			dispatch({ type: PET_CREATE });
 			Actions.pop();
@@ -73,15 +74,30 @@ export const petProfile = ({ uid }) => {
 	};
 };
 
-export const petFeed = ({ fed, uid }) => {
+export const petFeedBreakfast = ({ fedBreakfast, uid }) => {
 	const { currentUser } = firebase.auth();
 
 	return (dispatch) => {
 		firebase.database().ref(`/users/${currentUser.uid}/pets/${uid}`)
-			.update({ fed })
+			.update({ fedBreakfast })
 			.then(() => {
-				dispatch({ type: PET_FEED, payload: { prop: 'fed', value: fed } });
-				console.log(fed, uid);
+				dispatch({ 
+					type: PET_FEED_BREAKFAST, 
+					payload: { prop: 'fedBreakfast', value: fedBreakfast } });
+			});
+	};
+};
+
+export const petFeedDinner = ({ fedDinner, uid }) => {
+	const { currentUser } = firebase.auth();
+
+	return (dispatch) => {
+		firebase.database().ref(`/users/${currentUser.uid}/pets/${uid}`)
+			.update({ fedDinner })
+			.then(() => {
+				dispatch({ 
+					type: PET_FEED_DINNER, 
+					payload: { prop: 'fedDinner', value: fedDinner } });
 			});
 	};
 };
