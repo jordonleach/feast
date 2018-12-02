@@ -1,5 +1,5 @@
 import {
-	PETS_FETCH_SUCCESS
+	PETS_FETCH_SUCCESS,
 } from '../actions/types';
 
 const INITIAL_STATE = {};

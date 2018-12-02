@@ -5,12 +5,11 @@ import {
 	PET_CREATE,
 	PET_FEED,
 	PETS_FETCH_SUCCESS,
-	PET_FEAST_FETCH,
 	PET_SAVE_SUCCESS
 } from './types';
 
 
-export const petUpdate = ({ prop, value }) => {
+export const petUpdate = ({ prop, value, uid }) => {
 	return {
 		type: PET_UPDATE,
 		payload: { prop, value }

@@ -2,22 +2,21 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { View, Text, Switch } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 import PetForm from './PetForm';
 import { petFeed, petUpdate } from '../actions';
-import { Card, CardSection } from './common';
+import { Card, CardSection, Button } from './common';
 
 class PetProfile extends Component {
 	componentWillMount() {
-		_.each(this.props.pets, (value, prop) => {
+		_.each(this.props.pet, (value, prop) => {
 			this.props.petUpdate({ prop, value });
 		});
 	}
 
-	// onSwitchPress() {
-	// 	const { value, fed, uid } = this.props;
-
-	// 	this.props.petFeed({ fed: this.props.pet.fed, uid: this.props.pet.uid});
-	// }
+	onButtonPress() {
+		Actions.petEdit({ pet: this.props.pet });
+	}
 
 	render() {
 		return (
@@ -34,9 +33,13 @@ class PetProfile extends Component {
 							fed: value, 
 							uid: this.props.pet.uid 
 						})}
-						// onValueChange={this.onSwitchPress.bind(this)}
 					>
 					</Switch>
+				</CardSection>
+				<CardSection>
+					<Button onPress={this.onButtonPress.bind(this)}>
+						Edit Pet
+					</Button>
 				</CardSection>
 			</Card>
 		);

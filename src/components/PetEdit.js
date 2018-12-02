@@ -1,12 +1,14 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Actions } from 'react-native-router-flux';
 import PetForm from './PetForm';
 import { petUpdate, petSave, petDelete } from '../actions';
 import { Card, CardSection, Button, Confirm } from './common';
 
 class PetEdit extends Component {
 	state = { showModal: false };
+
 	componentWillMount() {
 		_.each(this.props.pet, (value, prop) => {
 			this.props.petUpdate({ prop, value });
@@ -32,7 +34,7 @@ class PetEdit extends Component {
 	render() {
 		return (
 			<Card>
-				<PetForm />
+				<PetForm {...this.props}/>
 
 				<CardSection>
 					<Button onPress={this.onButtonPress.bind(this)}>

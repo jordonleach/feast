@@ -9,7 +9,7 @@ import {
 
 const INITIAL_STATE = {
 	name: '',
-	fed: true/false
+	fed: ''
 };
 
 export default (state = INITIAL_STATE, action) => {
