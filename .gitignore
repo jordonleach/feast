@@ -5,3 +5,6 @@ npm-debug.*
 *.p12
 *.key
 *.mobileprovision
+functions/**/*
+*.firebaserc
+*.firebase.json

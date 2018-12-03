@@ -32,6 +32,9 @@ class PetProfile extends Component {
 					</View>
 				</CardSection>
 				<CardSection style={styles.cardSectionStyle}>
+					<Text style={styles.fedText}>
+						Breakfast
+					</Text>
 					<Switch
 						value={this.props.fedBreakfast}
 						onValueChange={value => this.props.petFeedBreakfast({ 
@@ -40,6 +43,9 @@ class PetProfile extends Component {
 						})}
 					>
 					</Switch>
+					<Text style={styles.fedText}>
+						Dinner
+					</Text>
 					<Switch
 						value={this.props.fedDinner}
 						onValueChange={value => this.props.petFeedDinner({ 
@@ -61,7 +67,9 @@ class PetProfile extends Component {
 
 const styles = {
 	cardSectionStyle: {
-		justifyContent: 'space-around'
+		flexDirection: 'row',
+		justifyContent: 'space-around',
+		alignItems: 'center'
 	},
 	profileStyle: {
 		flexDirection: 'column',
@@ -78,6 +86,11 @@ const styles = {
 		width: 150,
 		height: 150,
 		borderRadius: 50
+	},
+	fedSwitches: {
+		flexDirection: 'row',
+		justifyContent: 'space-around',
+		alignItems: 'center'
 	}
 }
 
